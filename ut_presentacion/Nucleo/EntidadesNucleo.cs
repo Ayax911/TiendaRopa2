@@ -16,14 +16,14 @@ namespace ut_presentacion.Nucleo
         }
 
         
-            public static Marcas? Marcas()
-            {
+        public static Marcas? Marcas()
+        {
                 var entidad = new Marcas();
                 entidad.Nit = "222222";
                 entidad.Nombre = "Marca Prueba 2";
 
                 return entidad;
-            }
+        }
 
         public static Productos? Productos(IConexion conexion)
         {
