@@ -27,7 +27,7 @@ namespace ut_presentacion.Nucleo
 
         public static Productos? Productos(IConexion conexion)
         {
-            var marca = conexion.Marcas!.FirstOrDefault(x => x.Nombre == "RopaFina");
+            var marca = conexion.Marcas!.FirstOrDefault(x => x.Nombre == "Arturo Calle");
 
             var entidad = new Productos();
             entidad.Nombre = "ArturoCalle";
