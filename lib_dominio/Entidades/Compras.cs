@@ -11,6 +11,8 @@ namespace lib_dominio.Entidades
         public DateTime Fecha { get; set; }
         public string? Codigo { get; set; }
         public decimal ValorTotal { get; set; }
+        /*[NotMapped] // Evita que se guarde en la base de datos
+        public decimal ValorTotal => DetallesCompras?.Sum(d => d.ValorBruto) ?? 0m;*/
 
         //FK
         public int Cliente { get; set; }
@@ -18,10 +20,7 @@ namespace lib_dominio.Entidades
         public int MetodoPago { get; set; }
         public int Lugar { get; set; }
 
-        /*public Clientes? _Cliente { get; set; }
-        public Sucursales? _Sucursal { get; set; }
-        public MetodosPagos? _MetodoPago { get; set; }
-        public Lugares? _Lugar { get; set; }*/
+       
 
         [ForeignKey("Cliente")] public Clientes? _Cliente { get; set; }
         [ForeignKey("Sucursal")] public Sucursales? _Sucursal { get; set; }
@@ -30,6 +29,11 @@ namespace lib_dominio.Entidades
 
 
         public List<DetallesCompras>? DetallesCompras { get; set; }
+
+        public decimal calcularValorTotal()
+        {
+            return DetallesCompras?.Sum(d => d.ValorBruto) ?? 0m;
+        }
 
     }
 

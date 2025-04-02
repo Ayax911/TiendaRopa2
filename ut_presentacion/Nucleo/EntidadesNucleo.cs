@@ -77,12 +77,23 @@ namespace ut_presentacion.Nucleo
             var entidad = new Compras();
             entidad.Fecha = DateTime.Now;
             entidad.Codigo = "Compras Prueba";
-            entidad.ValorTotal = 10000.05m;
+            entidad.ValorTotal = entidad.calcularValorTotal();
 
             entidad.Cliente = cliente!.Id;
             entidad.Sucursal = sucursal!.Id;
             entidad.MetodoPago = metodoPago!.Id;
             entidad.Lugar = lugar!.Id;
+
+            /*foreach (var elemento in conexion.DetallesCompras!)
+            {
+                if (elemento.Compra == entidad.Id)
+                {
+
+                    entidad.ValorTotal += elemento.ValorBruto;
+
+                }
+
+            }*/
 
             return entidad;
         }
@@ -94,8 +105,8 @@ namespace ut_presentacion.Nucleo
 
             var entidad = new DetallesCompras();
             entidad.Cantidad = 5;
-            entidad.ValorBruto = 10000.05m;
             entidad.Compra = compra!.Id;
+            entidad.ValorBruto = entidad.calcularValorBruto();
             entidad.Producto = producto!.Id;
 
             return entidad;
