@@ -49,6 +49,15 @@ namespace ut_presentacion.Nucleo
             return entidad;
         }
 
+        public static Lugares? Lugares()
+        {
+            var entidad = new Lugares();
+            entidad.Nombre = "Medellin prueba";
+            entidad.CodigoPostal = "20025";
+
+            return entidad;
+        }
+
 
     }
 }
