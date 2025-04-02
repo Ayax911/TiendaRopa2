@@ -37,5 +37,18 @@ namespace ut_presentacion.Nucleo
 
             return entidad;
         }
+
+        public static MetodosPagos? MetodosPagos()
+        {
+            
+            var entidad = new MetodosPagos();
+            entidad.Nombre = "Nequi";
+            entidad.Estado = true;
+            
+
+            return entidad;
+        }
+
+
     }
 }
