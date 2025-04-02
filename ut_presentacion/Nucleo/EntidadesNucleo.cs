@@ -58,6 +58,14 @@ namespace ut_presentacion.Nucleo
             return entidad;
         }
 
+        public static Sucursales? Sucursales()
+        {
+            var entidad = new Sucursales();
+            entidad.Nombre = "Rifle la central";
+            entidad.Direccion = "Calle 20 # 50";
+
+            return entidad;
+        }
 
     }
 }
