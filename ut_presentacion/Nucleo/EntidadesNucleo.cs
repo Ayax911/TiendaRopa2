@@ -87,5 +87,19 @@ namespace ut_presentacion.Nucleo
             return entidad;
         }
 
+        public static DetallesCompras? DetallesCompras(IConexion conexion)
+        {
+            var compra = conexion.Compras!.FirstOrDefault(x => x.Id == 1);
+            var producto = conexion.Productos!.FirstOrDefault(x => x.Id == 1);
+
+            var entidad = new DetallesCompras();
+            entidad.Cantidad = 5;
+            entidad.ValorBruto = 10000.05m;
+            entidad.Compra = compra!.Id;
+            entidad.Producto = producto!.Id;
+
+            return entidad;
+        }
+
     }
 }

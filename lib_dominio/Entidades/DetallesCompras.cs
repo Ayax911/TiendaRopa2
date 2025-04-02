@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace lib_dominio.Entidades
 {
 
@@ -9,12 +11,12 @@ namespace lib_dominio.Entidades
         public decimal ValorBruto { get; set; }
 
         //FK
-        public int Compras { get; set; }
-        public int Productos { get; set; }
+        public int Compra { get; set; }
+        public int Producto { get; set; }
 
 
-        public Compras? _Compra { get; set; }
-        public Productos? _Producto { get; set; }
+        [ForeignKey("Compra")] public Compras? _Compra { get; set; }
+        [ForeignKey("Producto")] public Productos? _Producto { get; set; }
 
     }
 
