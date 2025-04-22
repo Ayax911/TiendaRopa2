@@ -34,7 +34,7 @@ namespace ut_presentacion.Repositorios
         public bool Guardar()
         {
             this.entidad = EntidadesNucleo.Productos(this.iConexion!);
-            this.iConexion!.Productos!.Add(this.entidad);
+            this.iConexion!.Productos!.Add(this.entidad!);
             this.iConexion!.SaveChanges();
             return true;
         }

@@ -34,7 +34,7 @@ namespace ut_presentacion.Repositorios
         public bool Guardar()
         {
             this.entidad = EntidadesNucleo.MetodosPagos();
-            this.iConexion!.MetodosPagos!.Add(this.entidad);
+            this.iConexion!.MetodosPagos!.Add(this.entidad!);
             this.iConexion!.SaveChanges();
             return true;
         }

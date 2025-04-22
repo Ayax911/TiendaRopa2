@@ -1,5 +1,7 @@
 ﻿
 
+using lib_aplicaciones.Implementaciones;
+using lib_aplicaciones.Interfaces;
 using lib_dominio.Entidades;
 using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
@@ -8,53 +10,48 @@ using ut_presentacion.Nucleo;
 
 namespace ut_presentacion.Repositorios
 {
-        [TestClass]
-        public class MarcasPrueba
+    [TestClass]
+    public class MarcasPrueba
+    {
+        private readonly IMarcasAplicacion? iAplicacion;
+        private readonly IConexion? iConexion;
+        private List<Marcas>? lista;
+        private Marcas? entidad;
+        public MarcasPrueba()
         {
-            private readonly IConexion? iConexion;
-            private List<Marcas>? lista;
-            private Marcas? entidad;
-            public MarcasPrueba()
-            {
-                iConexion = new Conexion();
-                iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            }
-            [TestMethod]
-            public void Ejecutar()
-            {
-                Assert.AreEqual(true, Guardar());
-                Assert.AreEqual(true, Modificar());
-                Assert.AreEqual(true, Listar());
-                Assert.AreEqual(true, Borrar());
-            }
-            public bool Listar()
-            {
-                this.lista = this.iConexion!.Marcas!.ToList();
-                return lista.Count > 0;
-            }
-            public bool Guardar()
-            {
-                this.entidad = EntidadesNucleo.Marcas();
-                this.iConexion!.Marcas!.Add(this.entidad);
-                this.iConexion!.SaveChanges();
-                return true;
-            }
-            public bool Modificar()
-            {
-                this.entidad!.Nit = "33333";
-
-
-                var entry = this.iConexion!.Entry<Marcas>(this.entidad);
-                entry.State = EntityState.Modified;
-                this.iConexion!.SaveChanges();
-                return true;
-            }
-            public bool Borrar()
-            {
-                this.iConexion!.Marcas!.Remove(this.entidad!);
-                this.iConexion!.SaveChanges();
-                return true;
-            }
+            iConexion = new Conexion();
+            iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
+            iAplicacion = new MarcasAplicacion(iConexion);
+        }
+        [TestMethod]
+        public void Ejecutar()
+        {
+            Assert.AreEqual(true, Guardar());
+            Assert.AreEqual(true, Modificar());
+            Assert.AreEqual(true, Listar());
+            Assert.AreEqual(true, Borrar());
+        }
+        public bool Listar()
+        {
+            this.lista = this.iAplicacion!.Listar();
+            return lista.Count > 0;
+        }
+        public bool Guardar()
+        {
+            this.entidad = EntidadesNucleo.Marcas()!;
+            this.iAplicacion!.Guardar(this.entidad);
+            return true;
+        }
+        public bool Modificar()
+        {
+            this.iAplicacion!.Modificar(this.entidad);
+            return true;
+        }
+        public bool Borrar()
+        {
+            this.iAplicacion!.Borrar(this.entidad);
+            return true;
+        }
     }
 
 }
