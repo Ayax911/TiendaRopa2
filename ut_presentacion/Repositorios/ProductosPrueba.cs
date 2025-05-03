@@ -4,6 +4,7 @@ using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
+using Configuracion = ut_presentacion.Nucleo.Configuracion;
 
 namespace ut_presentacion.Repositorios
 {

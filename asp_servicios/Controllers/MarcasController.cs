@@ -6,10 +6,11 @@ using lib_dominio.Nucleo;
 using lib_repositorios.Implementaciones;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Configuracion = asp_servicios.Nucleo.Configuracion;
 
 namespace asp_servicios.Controllers
 {
-    /*[ApiController]
+    [ApiController]
     [Route("[controller]/[action]")]
     public class MarcasController : ControllerBase
     {
@@ -159,30 +160,6 @@ namespace asp_servicios.Controllers
                 return JsonConversor.ConvertirAString(respuesta);
             }
         }
-    }*/
-    [ApiController]
-    [Route("[controller]")]
-    public class MarcasController : ControllerBase
-    {
-        [HttpGet]
-        public IEnumerable<Marcas> Get()
-        {
-
-            var conexion = new Conexion();
-            conexion.StringConexion = "server=localhost;database=TiendaRopa;Integrated Security=True;TrustServerCertificate=true;";
-            conexion.Database.Migrate();
-
-            conexion.Marcas!.Add(new Marcas()
-            {
-                Nit = "Pruebas" + DateTime.Now.ToString("yyyyMMddhhmmss"),
-                Nombre = "Pruebas" + DateTime.Now.ToString("yyyyMMddhhmmss")
-                
-            });
-
-            conexion.SaveChanges();
-
-            return conexion.Marcas!.ToList();
-        }
     }
-
+   
 }

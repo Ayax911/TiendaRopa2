@@ -1,38 +1,8 @@
-/*using asp_servicios;
 
+using asp_servicios;
 var builder = WebApplication.CreateBuilder(args);
-
 var startup = new Startup(builder.Configuration);
 startup.ConfigureServices(builder, builder.Services);
-
 var app = builder.Build();
 startup.Configure(app, app.Environment);
-app.MapGet("/", () => "asp_servicios");
-app.Run();*/
-
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
 app.Run();

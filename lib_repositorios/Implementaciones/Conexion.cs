@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace lib_repositorios.Implementaciones
 {
-    public partial class Conexion : DbContext, IConexion
+    public class Conexion : DbContext, IConexion
     {
         public string? StringConexion { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            this.StringConexion = Configuracion.ObtenerValor("StringConexion");
             optionsBuilder.UseSqlServer(this.StringConexion!, p => { });
             optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
